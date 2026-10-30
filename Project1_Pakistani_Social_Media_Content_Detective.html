@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pakistani Social Media Content Detective | Project 1</title>
+<style>
+  :root { --ink:#172b3a; --muted:#526574; --blue:#145b73; --mint:#e7f4ef; --cream:#f6f3eb; --line:#d8e0e3; --white:#fff; --gold:#d79727; }
+  * { box-sizing:border-box; }
+  body { margin:0; color:var(--ink); background:#edf2f2; font:16px/1.58 "Segoe UI",Arial,sans-serif; }
+  main { width:min(940px,calc(100% - 32px)); margin:28px auto; background:var(--white); box-shadow:0 10px 36px #19374616; }
+  header { padding:54px 58px 42px; color:white; background:linear-gradient(130deg,#10394d,#14765f); }
+  header .eyebrow { letter-spacing:.14em; text-transform:uppercase; font-weight:700; font-size:12px; color:#bfe9db; }
+  h1 { margin:14px 0 8px; line-height:1.13; font-size:clamp(34px,6vw,52px); }
+  header p { max-width:700px; margin:10px 0 0; color:#ecf6f4; font-size:18px; }
+  .meta { display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:26px; color:#e4f2ee; font-size:14px; }
+  .meta span { border-bottom:1px solid #ffffff70; padding-bottom:3px; }
+  article { padding:0 58px 54px; }
+  section { padding-top:31px; }
+  h2 { margin:0 0 12px; color:var(--blue); font-size:24px; line-height:1.25; }
+  h3 { margin:20px 0 7px; font-size:17px; }
+  p { margin:8px 0 12px; }
+  .question { margin:28px 0 0; padding:19px 22px; background:var(--cream); border-left:5px solid var(--gold); font-size:21px; font-weight:700; }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:18px 0 8px; }
+  .card { padding:17px; border:1px solid var(--line); border-radius:8px; background:#fbfdfd; }
+  .card strong { display:block; color:var(--blue); font-size:27px; line-height:1.2; }
+  .card span { display:block; color:var(--muted); font-size:13px; margin-top:6px; }
+  table { width:100%; border-collapse:collapse; margin:14px 0 10px; font-size:14px; }
+  th,td { text-align:left; vertical-align:top; border-bottom:1px solid var(--line); padding:9px 10px; }
+  th { background:#edf5f4; color:#184a5b; }
+  .note { padding:14px 17px; border-radius:7px; background:var(--mint); color:#204d43; font-size:14px; }
+  .caution { padding:14px 17px; border-radius:7px; background:#fff5e3; color:#674b17; font-size:14px; }
+  .bar-row { display:grid; grid-template-columns:150px 1fr 50px; gap:10px; align-items:center; margin:10px 0; font-size:14px; }
+  .bar { height:13px; background:#edf1f1; border-radius:20px; overflow:hidden; }
+  .bar i { display:block; height:100%; background:#1b806f; border-radius:20px; }
+  .steps { padding-left:22px; }
+  .steps li { margin:9px 0; padding-left:4px; }
+  .answer { padding:17px 19px; margin:12px 0; border:1px solid var(--line); border-radius:8px; }
+  .answer b { color:var(--blue); }
+  footer { padding:21px 58px; background:#f4f7f7; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+  @media(max-width:680px) { header {padding:35px 24px;} article {padding:0 24px 38px;} footer {padding:20px 24px;} .cards {grid-template-columns:repeat(2,1fr);} .bar-row {grid-template-columns:110px 1fr 42px;} }
+  @media print { body {background:white;} main {width:100%; margin:0; box-shadow:none;} header {print-color-adjust:exact; -webkit-print-color-adjust:exact;} .card,.note,.caution,th {print-color-adjust:exact; -webkit-print-color-adjust:exact;} section {break-inside:avoid;} }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Project 1 · Social Media Analytics</div>
+    <h1>🇵🇰 Pakistani Social Media<br>Content Detective</h1>
+    <p>An exploratory study of what social-media content appears to attract engagement for Pakistani fashion and retail brands.</p>
+    <div class="meta">
+      <span>Student: ____________________</span>
+      <span>Class: ____________________</span>
+      <span>Date: ____________________</span>
+    </div>
+  </header>
+  <article>
+    <div class="question">Business question: “What type of social-media content gets Pakistani audiences to engage?”</div>
+
+    <section>
+      <h2>1. Executive summary</h2>
+      <p>This project examined post-level metrics and a collected sample of audience comments. Reels make up most of the posts in this dataset. Among posts with both likes and comment counts, Reels had a median of <b>3,371 recorded interactions</b> (likes + comments). A few very popular image posts had much higher counts, but there were only four comparable images. Creator- and celebrity-associated posts also appear among the most-liked examples.</p>
+      <p>The evidence supports a <b>testable content idea</b>, not a universal rule: try a short, culturally relevant creator-led product Reel, then compare it with a product-focused version. The dataset cannot fairly establish which platform is best, whether sentiment causes engagement, or which audience demographic responds most.</p>
+      <div class="cards">
+        <div class="card"><strong>159</strong><span>posts in the dataset</span></div>
+        <div class="card"><strong>2,118</strong><span>collected comments</span></div>
+        <div class="card"><strong>146</strong><span>Instagram posts (of 159)</span></div>
+        <div class="card"><strong>134</strong><span>Reels (of 159)</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Data and method</h2>
+      <p>The analysis uses the supplied <a href="posts.csv">posts.csv</a> and <a href="comments.csv">comments.csv</a>. <a href="evidence.csv">evidence.csv</a> provides comment examples, and <a href="recommendations.csv">recommendations.csv</a> contains heuristic suggestions that should be treated as provisional—not as independently verified findings.</p>
+      <ul>
+        <li>Compared likes and comments across the available platforms and post formats.</li>
+        <li>For the format comparison, calculated recorded interactions as <b>likes + comments_count</b> for posts with both values; reported the median to reduce the influence of viral outliers.</li>
+        <li>Summarized the supplied manual sentiment and topic labels. Labels marked uncertain or provisional were not treated as verified truth.</li>
+      </ul>
+      <div class="caution"><b>Important:</b> Recorded interactions are not an engagement rate. Reach, impressions, and consistently measured audience size are not available for most posts.</div>
+    </section>
+
+    <section>
+      <h2>3. Findings</h2>
+      <h3>Post format</h3>
+      <table>
+        <thead><tr><th>Post format</th><th>Posts with likes + comments</th><th>Median recorded interactions</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>Reel</td><td>129</td><td>3,371</td><td>Largest sample; useful as the main format to test.</td></tr>
+          <tr><td>Carousel</td><td>11</td><td>2,543</td><td>Small sample; cannot conclude it performs worse.</td></tr>
+          <tr><td>Video</td><td>7</td><td>1,833</td><td>Small sample; definition may differ from Reels.</td></tr>
+          <tr><td>Image</td><td>4</td><td>25,562</td><td>Very small sample; a few high-count posts strongly affect results.</td></tr>
+        </tbody>
+      </table>
+      <p>These are raw counts, not rates adjusted for reach or followers. The image result is especially unstable because it is based on only four posts. The result does <b>not</b> show that images are generally better than Reels.</p>
+
+      <h3>Platform coverage</h3>
+      <div class="bar-row"><span>Instagram · 146</span><div class="bar"><i style="width:91.8%"></i></div><b>91.8%</b></div>
+      <div class="bar-row"><span>TikTok · 6</span><div class="bar"><i style="width:3.8%"></i></div><b>3.8%</b></div>
+      <div class="bar-row"><span>X · 4</span><div class="bar"><i style="width:2.5%"></i></div><b>2.5%</b></div>
+      <div class="bar-row"><span>Facebook · 3</span><div class="bar"><i style="width:1.9%"></i></div><b>1.9%</b></div>
+      <p>Instagram dominates the sample. The other platforms have too few posts for a dependable platform ranking. Comparing raw likes across platforms would also be misleading because audiences and measurement methods differ.</p>
+
+      <h3>Examples among the most-liked posts</h3>
+      <table>
+        <thead><tr><th>Post</th><th>Brand / format</th><th>Likes</th><th>What the caption suggests</th></tr></thead>
+        <tbody>
+          <tr><td>MB_IG_007</td><td>Maria B. · Reel</td><td>342,137</td><td>Winter collection featuring Wahaj and Durefishan.</td></tr>
+          <tr><td>SP_IG_033</td><td>Sapphire · Reel</td><td>279,203</td><td>Ready-to-wear Fall/Winter collection.</td></tr>
+          <tr><td>SP_IG_034</td><td>Sapphire · Reel</td><td>246,293</td><td>Fall styling and collection promotion.</td></tr>
+          <tr><td>JJ_IG_009</td><td>J. · Reel</td><td>237,207</td><td>Fragrance collaboration with Burak Ozcivit.</td></tr>
+          <tr><td>SP_IG_012</td><td>Sapphire · Carousel</td><td>229,980</td><td>Fall/Winter collection showcase.</td></tr>
+        </tbody>
+      </table>
+      <p>These examples suggest that collection storytelling and recognizable collaborators are worth testing. They are individual high-performing examples, not proof that celebrity content caused the high counts.</p>
+
+      <h3>What the comments say</h3>
+      <table>
+        <thead><tr><th>Supplied sentiment label</th><th>Comments</th><th>Share</th></tr></thead>
+        <tbody>
+          <tr><td>Positive</td><td>664</td><td>31.4%</td></tr>
+          <tr><td>Neutral</td><td>477</td><td>22.5%</td></tr>
+          <tr><td>Negative</td><td>154</td><td>7.3%</td></tr>
+          <tr><td>Uncertain</td><td>822</td><td>38.8%</td></tr>
+          <tr><td>Excluded</td><td>1</td><td>&lt;0.1%</td></tr>
+        </tbody>
+      </table>
+      <p>Frequent supplied topics include appreciation (259 comments), price inquiries (244), emoji reactions (199), and general feedback (193). This indicates that audiences react to products and also seek practical information such as price. However, the comment sample cannot show that one sentiment produces more engagement: comment coverage varies, and 38.8% of sentiment labels are uncertain.</p>
+
+      <h3>Hashtags, timing, and audience segments</h3>
+      <ul>
+        <li><b>Hashtags:</b> The hashtag field is sparse. #wearyourself and #khaadi each appear three times, while #readytowear appears twice. There is not enough consistent data to identify a winning hashtag.</li>
+        <li><b>Timing:</b> Posting time is blank for 10 posts, and four post dates are missing. Day-of-week counts alone do not measure performance; comparable reach and posting conditions are missing.</li>
+        <li><b>Audience:</b> Comments include English/mixed language, Roman Urdu, Urdu script, and emoji-only responses. Demographic details such as age, location, and gender are not supplied, so audience segments cannot be reliably identified.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Recommendation: what should the brand post next?</h2>
+      <div class="note"><b>Recommended test:</b> Publish a short Instagram Reel showing a new Pakistani fashion collection through a creator or recognizable local personality. Use a simple story or styling transformation, clearly show the product, and finish with a useful CTA such as “View the collection” or “Check price and availability.”</div>
+      <ol class="steps">
+        <li>Create two comparable versions for the same product and campaign: (A) creator-led storytelling/styling and (B) a product-focused demonstration.</li>
+        <li>Keep the platform, campaign period, offer, and paid support as similar as possible. If practical, test versions with comparable audience groups.</li>
+        <li>Record reach, impressions, likes, comments, shares, saves, link clicks, and purchases for each post.</li>
+        <li>Compare <b>engagement per reach</b>—(likes + comments + shares + saves) ÷ reach—along with clicks and conversions. Do not select a winner from raw likes alone.</li>
+        <li>Review comments for price and availability questions, then make that information easy to find in the caption or linked product page.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>5. Conclusion</h2>
+      <p>In this dataset, Reels are the most common format and have a median of 3,371 recorded likes-plus-comments among posts with both metrics. Several top posts combine collection content with a recognizable collaborator, making creator-led storytelling a sensible experiment. The evidence is exploratory: uneven platform coverage, small format samples, missing reach and timing data, and uncertain comment labels prevent stronger claims.</p>
+      <div class="answer"><b>Answer to the business question:</b> Creator-led collection Reels are a promising format to test with this sample, but the brand should validate the idea using reach-adjusted results and a controlled comparison before treating it as a proven strategy.</div>
+    </section>
+  </article>
+  <footer>
+    <b>Data note:</b> Counts and labels are taken from the supplied CSV files. Comments may be a collected sample rather than every comment on each post. “Likes + comments” is a descriptive interaction count, not a standardized engagement rate or a measure of sales.
+  </footer>
+</main>
+</body>
+</html>
